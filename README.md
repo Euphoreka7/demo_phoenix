@@ -165,14 +165,13 @@ end
 
 Save record to database
 ```
-alias DemoPhoenix.Repo
 quote = %DemoPhoenix.Quote{saying: "First message.", author: "Bob Smith"}
-Repo.insert(quote)
+DemoPhoenix.Repo.insert(quote)
 ```
 
 Load record from database where 1 - quotes.id
 ```
-quote2 = Repo.get(DemoPhoenix.Quote, 1)
+quote2 = DemoPhoenix.Repo.get(DemoPhoenix.Quote, 1)
 ```
 
 Update and restroy record

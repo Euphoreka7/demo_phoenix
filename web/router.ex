@@ -17,6 +17,7 @@ defmodule DemoPhoenix.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", QuoteController, :homepage
+    resources "/quotes", QuoteController
   end
 
   # Other scopes may use custom stacks.
