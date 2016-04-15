@@ -1,0 +1,27 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
+  <%= if f.errors != [] do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below:</p>
+      <ul>
+        <%= for {attr, message} <- f.errors do %>
+          <li><%= humanize(attr) %> <%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :saying, "Saying" %>
+    <%= text_input f, :saying, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :author, "Author" %>
+    <%= text_input f, :author, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Save", class: "btn btn-primary" %>
+  </div>
+<% end %>
