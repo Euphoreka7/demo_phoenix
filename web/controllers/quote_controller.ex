@@ -5,6 +5,8 @@ defmodule DemoPhoenix.QuoteController do
   alias DemoPhoenix.Quote
   import DemoPhoenix.Router.Helpers
 
+  plug :scrub_params, "quote" when action in [:create, :update]
+
   def homepage(conn, _params) do
     render conn, "homepage.html"
   end
