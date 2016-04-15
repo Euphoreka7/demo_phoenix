@@ -7,14 +7,14 @@
     </tr>
   </thead>
   <tbody>
-    <%= for q <- @quotes do %>
+    <%= for quote <- @quotes do %>
       <tr>
+        <td><%= quote.saying %></td>
+        <td><%= quote.author %></td>
         <td>
-          <a href="<%=quote_path(@conn, :show, q.id) %>"><%= q.saying %></a>
-        </td>
-        <td><%= q.author %></td>
-        <td>
-          <a href="<%=quote_path(@conn, :edit, q.id) %>">Edit</a>
+          <%= link "Show", to: quote_path(@conn, :show, quote), class: "btn btn-default btn-xs" %>
+          <%= link "Edit", to: quote_path(@conn, :edit, quote), class: "btn btn-default btn-xs" %>
+          <%= link "Delete", to: quote_path(@conn, :delete, quote), method: :delete, class: "btn btn-danger btn-xs" %>
         </td>
       </tr>
     <% end %>
