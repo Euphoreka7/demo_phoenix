@@ -10,33 +10,38 @@ defmodule DemoPhoenix.QuoteController do
   end
 
   def index(conn, _params) do
-    conn
-    |> assign(:quotes, Repo.all(Quote))
-    |> render("index.html")
+    quotes = Repo.all(Quote)
+    render(conn, "index.html", quotes: quotes)
   end
 
   def new(conn, _params) do
-    render conn, "new.html"
+    changeset = Quote.changeset(%Quote{})
+    render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"quote" => %{"saying" => saying, "author" => author}}) do
-    q = %Quote{saying: saying,  author: author}
-    Repo.insert(q)
-    redirect conn, to: quote_path(conn, :index)
+  def create(conn, %{"quote" => quote_params}) do
+    changeset = Quote.changeset(%Quote{}, quote_params)
+
+    if changeset.valid? do
+      Repo.insert!(changeset)
+
+      conn
+      |> put_flash(:info, "Quote created successfully.")
+      |> redirect(to: quote_path(conn, :index))
+    else
+      render(conn, "new.html", changeset: changeset)
+    end
   end
 
   def show(conn, %{"id" => id}) do
-    {id, _} = Integer.parse(id)
-    conn
-    |> assign(:quote, Repo.get(Quote, id))
-    |> render("show.html")
+    quote = Repo.get!(Quote, id)
+    render(conn, "show.html", quote: quote)
   end
 
   def edit(conn, %{"id" => id}) do
-    {id, _} = Integer.parse(id)
-    conn
-    |> assign(:quote, Repo.get(Quote, id))
-    |> render("edit.html")
+    quote = Repo.get!(Quote, id)
+    changeset = Quote.changeset(quote)
+    render(conn, "edit.html", quote: quote, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "quote" => quote_params}) do
