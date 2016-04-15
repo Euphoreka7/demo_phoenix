@@ -23,4 +23,11 @@ defmodule DemoPhoenix.QuoteController do
     Repo.insert(q)
     redirect conn, to: quote_path(conn, :index)
   end
+
+  def show(conn, %{"id" => id}) do
+    {id, _} = Integer.parse(id)
+    conn
+    |> assign(:quote, DemoPhoenix.Repo.get(DemoPhoenix.Quote, id))
+    |> render("show.html")
+  end
 end
