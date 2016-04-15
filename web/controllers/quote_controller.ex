@@ -1,7 +1,6 @@
 defmodule DemoPhoenix.QuoteController do
   use DemoPhoenix.Web, :controller
 
-  alias DemoPhoenix.Router
   alias DemoPhoenix.Quote
   import DemoPhoenix.Router.Helpers
 
