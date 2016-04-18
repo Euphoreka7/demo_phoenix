@@ -7,7 +7,8 @@ defmodule DemoPhoenix.QuoteController do
   plug :scrub_params, "quote" when action in [:create, :update]
 
   def homepage(conn, _params) do
-    render conn, "homepage.html"
+    quotes = Repo.all(Quote)
+    render(conn, "index.html", quotes: quotes)
   end
 
   def index(conn, _params) do
