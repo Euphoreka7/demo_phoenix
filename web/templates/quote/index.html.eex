@@ -1,22 +1,24 @@
-<table class='table'>
-  <thead>
-    <tr>
-      <th>Saying</th>
-      <th>Author</th>
-      <th>Actions</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= for quote <- @quotes do %>
+<div class="page-content col-xs-10 col-xs-offset-1">
+  <table class="table table-striped">
+    <thead>
       <tr>
-        <td><%= quote.saying %></td>
-        <td><%= quote.author %></td>
-        <td>
-          <%= link "Show", to: quote_path(@conn, :show, quote), class: "btn btn-default btn-xs" %>
-          <%= link "Edit", to: quote_path(@conn, :edit, quote), class: "btn btn-default btn-xs" %>
-          <%= link "Delete", to: quote_path(@conn, :delete, quote), method: :delete, class: "btn btn-danger btn-xs" %>
-        </td>
+        <th>Saying</th>
+        <th>Author</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-</tbody>
-</table>
+    </thead>
+    <tbody>
+      <%= for quote <- @quotes do %>
+        <tr>
+          <td><%= quote.saying %></td>
+          <td><%= quote.author %></td>
+          <td>
+            <%= link "Show", to: quote_path(@conn, :show, quote), class: "btn btn-default btn-xs" %>
+            <%= link "Edit", to: quote_path(@conn, :edit, quote), class: "btn btn-default btn-xs" %>
+            <%= link "Delete", to: quote_path(@conn, :delete, quote), method: :delete, class: "btn btn-danger btn-xs" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

@@ -8,26 +8,53 @@
     <meta name="author" content="">
 
     <title>Hello DemoPhoenix!</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
-  <body>
+  <body class="Site">
     <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
+      <header>
+        <div class="col-xs-6">
+          <div class="circle">
+            <br />
+            Elixir &
+            <br />
+            Erlang
+            <br />
+            Rock!
+          </div>
+
+        </div>
+
+        <div class="col-xs-6 text-right">
+          <div id="header-links">
+            <a href="<%= quote_path(@conn, :new) %>">Contribute</a>
+          </div>
+        </div>
       </header>
+
+      <hr class="clear col-xs-12"/>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
-      <main role="main">
+      <main class="Site-content">
         <%= render @view_module, @view_template, assigns %>
       </main>
+
+      <footer>
+        <div class="col-xs-6">
+          <a href="<%= quote_path(@conn, :homepage)%>">
+            This isn't enough, I need more
+          </a>
+        </div>
+        <div class="col-xs-6 text-right">
+          <a href="http://www.phoenixframework.org/">
+            <img src="/images/phoenix.png" />
+          </a>
+        </div>
+      </footer>
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>

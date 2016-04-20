@@ -1,5 +1,7 @@
-<h1>New Quote</h1>
-<%= render "form.html", changeset: @changeset,
-                        action: quote_path(@conn, :create) %>
+<div class="col-xs-10 col-xs-offset-1">
+  <h1>New Quote</h1>
+  <%= render "form.html", changeset: @changeset,
+                          action: quote_path(@conn, :create) %>
 
-<%= link "Back", to: quote_path(@conn, :index) %>
+  <%= link "Back", to: quote_path(@conn, :index) %>
+</div>
